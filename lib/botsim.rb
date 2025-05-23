@@ -11,6 +11,7 @@ class Botsim
 
   def initialize(tabletop = Tabletop.new(5))
     @tabletop = tabletop
+    @placed = false
   end
 
   def process(input)
@@ -33,17 +34,21 @@ class Botsim
   def place(x, y, direction)
     return unless @tabletop.valid?(x, y, direction)
 
+    @placed = true
     @x = x
     @y = y
     @direction = direction
   end
 
   def report
-    return if @x.nil?
+    return unless @placed
+
     "#{@x},#{@y},#{@direction}"
   end
 
   def move
+    return unless @placed
+
     x = @x + MOVES[@direction].first
     y = @y + MOVES[@direction].last
     return unless @tabletop.valid?(x, y, @direction)
@@ -54,11 +59,15 @@ class Botsim
 
   # FIXME: Double check wrap-around is working
   def left
+    return unless @placed
+
     new_index = Tabletop::DIRECTIONS.index(@direction) - 1
     @direction = Tabletop::DIRECTIONS[new_index]
   end
 
   def right
+    return unless @placed
+
     new_index = Tabletop::DIRECTIONS.index(@direction) + 1
     @direction = Tabletop::DIRECTIONS[new_index]
   end
@@ -69,4 +78,3 @@ class Botsim
     %w[PLACE MOVE LEFT RIGHT REPORT].include?(command)
   end
 end
-

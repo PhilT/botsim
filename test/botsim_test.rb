@@ -36,6 +36,21 @@ class TestBotsim < Minitest::Test
     assert_equal "0,1,NORTH", @bot.report
   end
 
+  def test_that_move_is_ignored_before_place
+    @bot.move
+    assert_nil @bot.report
+  end
+
+  def test_that_left_is_ignored_before_place
+    @bot.left
+    assert_nil @bot.report
+  end
+
+  def test_that_right_is_ignored_before_place
+    @bot.right
+    assert_nil @bot.report
+  end
+
   def test_that_move_ignore_invalid_move
     @bot.place(0, 0, "SOUTH")
     @bot.move
