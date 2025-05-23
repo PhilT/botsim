@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require_relative "lib/botsim"
+
+if ARGV.length > 0
+  input = File.read(ARGV[0])
+  bot = Botsim.new
+  puts bot.process(input)
+else
+  puts "Usage: #{__FILE__} <input>"
+  puts " <input> path to input file containing commands"
+end
