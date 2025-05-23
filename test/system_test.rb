@@ -1,7 +1,7 @@
 require "minitest/autorun"
 require_relative "../lib/botsim"
 
-class TestSystem < Minitest::Test
+class SystemTest < Minitest::Test
   def setup
     @input = File.read("data/input.txt")
     @output = File.read("data/output.txt").split("\n")

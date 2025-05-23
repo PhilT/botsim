@@ -1,7 +1,7 @@
 require "minitest/autorun"
 require_relative "../lib/tabletop"
 
-class TestTabletop < Minitest::Test
+class TabletopTest < Minitest::Test
   def setup
     @tabletop_size = 5
     @tabletop = Tabletop.new @tabletop_size
