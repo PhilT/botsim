@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative "tabletop"
+require_relative "../lib/tabletop"
 
 class TestTabletop < Minitest::Test
   def setup
@@ -32,4 +32,3 @@ class TestTabletop < Minitest::Test
     refute @tabletop.valid?(0, 0, "INVALID")
   end
 end
-

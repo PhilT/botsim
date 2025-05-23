@@ -6,13 +6,27 @@ class TestBotsim < Minitest::Test
     @bot = Botsim.new
   end
 
+  def test_that_process_ignores_invalid_command
+    assert_equal [], @bot.process("SOMETHING\nREPORT")
+  end
+
+  def test_that_process_iterates_through_commands
+    output = @bot.process("PLACE 0,0,NORTH\nREPORT")
+    assert_equal ["0,0,NORTH"], output
+  end
+
+  def test_that_process_handles_additional_spaces
+    output = @bot.process("PLACE 0,0,NORTH\nREPORT \n")
+    assert_equal ["0,0,NORTH"], output
+  end
+
   def test_that_place_sets_x_y_and_direction
-    @bot.place 0, 0, "NORTH"
+    @bot.place(0, 0, "NORTH")
     assert_equal "0,0,NORTH", @bot.report
   end
 
   def test_that_place_ignores_invalid_parameters
-    @bot.place -5, 0, "NORTH"
+    @bot.place(-5, 0, "NORTH")
     assert_nil @bot.report
   end
 
