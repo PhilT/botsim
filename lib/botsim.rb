@@ -57,22 +57,22 @@ class Botsim
     @y = y
   end
 
-  # FIXME: Double check wrap-around is working
   def left
-    return unless @placed
-
-    new_index = Tabletop::DIRECTIONS.index(@direction) - 1
-    @direction = Tabletop::DIRECTIONS[new_index]
+    turn -1
   end
 
   def right
-    return unless @placed
-
-    new_index = Tabletop::DIRECTIONS.index(@direction) + 1
-    @direction = Tabletop::DIRECTIONS[new_index]
+    turn 1
   end
 
   private
+
+  def turn(inc)
+    return unless @placed
+
+    new_index = Tabletop::DIRECTIONS.index(@direction) + (1 * inc)
+    @direction = Tabletop::DIRECTIONS[new_index]
+  end
 
   def valid_command?(command)
     %w[PLACE MOVE LEFT RIGHT REPORT].include?(command)
