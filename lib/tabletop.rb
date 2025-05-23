@@ -1,5 +1,5 @@
 class Tabletop
-  DIRECTIONS = %w[NORTH SOUTH EAST WEST]
+  DIRECTIONS = %w[NORTH EAST SOUTH WEST]
 
   def initialize(size)
     @size = size

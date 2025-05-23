@@ -4,7 +4,7 @@ require_relative "../lib/botsim"
 class TestSystem < Minitest::Test
   def setup
     @input = File.read("data/input.txt")
-    @output = File.read("data/output.txt")
+    @output = File.read("data/output.txt").split("\n")
   end
 
   def test_end_to_end
