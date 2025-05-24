@@ -7,7 +7,7 @@ class BotsimTest < Minitest::Test
   end
 
   def test_that_process_ignores_invalid_command
-    assert_equal [], @botsim.process("SOMETHING\nREPORT")
+    assert_equal ["0,0,NORTH"], @botsim.process("PLACE 0,0,NORTH\nSOMETHING\nREPORT")
   end
 
   def test_that_process_iterates_through_commands
@@ -20,4 +20,9 @@ class BotsimTest < Minitest::Test
     assert_equal ["0,0,NORTH"], output
   end
 
+  def test_that_a_different_tabletop_can_be_used
+    @botsim = Botsim.new(Tabletop.new(6))
+    output = @botsim.process("PLACE 5,5,NORTH\nREPORT")
+    assert_equal ["5,5,NORTH"], output
+  end
 end
