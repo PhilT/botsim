@@ -6,7 +6,23 @@ Run with:
 ```
 ./botsim <input>
 ```
-where `<input>` is a path to the input file containing the commands.
+where `<input>` is a path to the input file containing the commands. One command
+per line. Commands that can be used are:
+
+* PLACE X,Y,F 
+    Places the robot on the tabletop. This must be the first command in the input
+    Where X,Y is the position to place within the 5x5 unit grid (zero-based)
+    F is the direction to face
+* MOVE
+    Move forward 1 unit in the direction the robot is facing
+* LEFT
+    Rotate left 90deg to face a new direction
+* RIGHT
+    Rotate right 90deg to face a new direction
+* REPORT
+    Output the current position and direction the robot is facing
+
+See `data/input.txt` for an example input file
 
 ## Development
 
