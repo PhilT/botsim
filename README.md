@@ -46,8 +46,7 @@ Run: `rake`
 
 ## Notes
 
-* Don't know how to handle commands other than PLACE having extra parameters
-* Probably additional error handling on input depending on how badly typed commands
+* Probably additional error handling on input depending on how invalid commands
     should be handled (e.g. throwing an error, ignoring or best effort)
 * Could allow the Tabletop size to be configured
 * I'd add Rubocop and any other linters as appropriate but didn't want to make the
@@ -55,3 +54,4 @@ Run: `rake`
 * I'd question whether to process commands that have additional arguments when
     they're not meant to. For now, I've chosen to discard the args and process
     the command
+* Could be nice to build a REPL
