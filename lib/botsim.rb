@@ -11,18 +11,15 @@ class Botsim
 
   def process(commands)
     commands.split("\n").filter_map do |line|
-      if line.start_with? "PLACE "
-        _, x, y, direction = line.split(/PLACE ([0-9]+),([0-9]+),(.+)/)
+      command, x, y, direction = line.split(/ |,/).reject(&:empty?)
+      next unless valid_command?(command)
 
+      if command == "PLACE"
         @bot.place(x.to_i, y.to_i, direction)
-        nil
       else 
-        command = line.strip
-        next unless valid_command?(command)
-
         output = @bot.send(command.downcase)
-        output if command == "REPORT"
       end
+      output if command == "REPORT"
     end
   end
 

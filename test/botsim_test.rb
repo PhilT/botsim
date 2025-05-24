@@ -25,4 +25,14 @@ class BotsimTest < Minitest::Test
     output = @botsim.process("PLACE 5,5,NORTH\nREPORT")
     assert_equal ["5,5,NORTH"], output
   end
+
+  def test_that_additional_args_are_ignored
+    output = @botsim.process("PLACE 0,0,NORTH\nMOVE 4,4,EAST\nREPORT")
+    assert_equal ["0,1,NORTH"], output
+  end
+
+  def test_that_additional_whitespace_is_handled
+    output = @botsim.process("PLACE 0, 0,NORTH\nREPORT")
+    assert_equal ["0,0,NORTH"], output
+  end
 end

@@ -31,5 +31,11 @@ Run: `rake`
 ## Notes
 
 * Don't know how to handle commands other than PLACE having extra parameters
-* Probably lots more error handling needed on input as well (e.g. the regex could probably be tighten up or a different type of parser used)
+* Probably additional error handling on input depending on how badly typed commands
+    should be handled (e.g. throwing an error, ignoring or best effort)
 * Could allow the Tabletop size to be configured
+* I'd add Rubocop and any other linters as appropriate but didn't want to make the
+    diffs noisey with those changes for now
+* I'd question whether to process commands that have additional arguments when
+    they're not meant to. For now, I've chosen to discard the args and process
+    the command
